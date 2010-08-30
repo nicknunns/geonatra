@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<title>Sinatra App</title>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" type="text/css" href="css/reset.css" /> 
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+	<script src="js/gears_init.js"></script>
+	<script src="js/geo.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		if (geo_position_js.init()) {
+		  geo_position_js.getCurrentPosition(geo_success, geo_error);
+		}
+		function geo_success(p) {
+			setCookie("lat", p.coords.latitude, 1);
+			setCookie("lon", p.coords.longitude, 1);
+			window.location="/found";	
+		}
+		function geo_error() {
+		  	window.location="/lost";
+		}
+		
+		function setCookie(c_name,value,expiredays)
+		{
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate()+expiredays);
+		document.cookie=c_name+ "=" +escape(value)+
+		((expiredays==null) ? "" : ";expires="+exdate.toUTCString());
+		}
+	</script>
+	<div id="wrap">
+		<div id = "title">
+			Geonatra
+		</div>
+		<div id ="spinner">
+			<img src="img/ajax-loader.gif">
+		</div>
+	</div>
+	
+	
+</body>
+</html>
