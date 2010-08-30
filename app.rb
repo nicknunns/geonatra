@@ -21,7 +21,9 @@
   get '/found' do
     @lat = request.cookies['lat']
     @lon = request.cookies['lon']
-    
+    response.set_cookie('lat', 0)
+    response.set_cookie('lon', 0)
+
     erb :found
   end
   
